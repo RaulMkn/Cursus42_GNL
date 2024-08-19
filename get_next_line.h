@@ -6,7 +6,7 @@
 /*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 18:41:06 by rmakende          #+#    #+#             */
-/*   Updated: 2024/06/18 20:51:07 by rmakende         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:50:07 by rmakende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
-char	*ft_free(char **str);
 char	*ft_strdup(const char *str);
 
 #endif

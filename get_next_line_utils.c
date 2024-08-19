@@ -6,7 +6,7 @@
 /*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 17:39:57 by rmakende          #+#    #+#             */
-/*   Updated: 2024/06/28 00:48:20 by rmakende         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:02:56 by rmakende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (0);
 		s1[0] = 0;
 	}
-	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!str)
-		return (ft_free(&s1));
+		return (free(s1), s1 = NULL, NULL);
 	i = -1;
 	while (s1[++i])
 		str[i] = s1[i];
@@ -35,7 +35,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++c])
 		str[i + c] = s2[c];
 	str[i + c] = '\0';
-	ft_free(&s1);
+	free(s1);
+	s1 = NULL;
 	return (str);
 }
 
@@ -71,11 +72,13 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*res;
+	size_t	s_len;
 
+	s_len = ft_strlen(s);
 	i = 0;
 	if (!s)
 		return (0);
-	if (start > ft_strlen(s))
+	if (start > s_len)
 	{
 		res = malloc(sizeof(char) * (1));
 		if (!res)
@@ -83,12 +86,12 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		res[0] = '\0';
 		return (res);
 	}
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s) - start;
+	if (s_len - start < len)
+		len = s_len - start;
 	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
-	while (start < ft_strlen(s) && i < len && s[start])
+	while (start < s_len && i < len && s[start])
 		res[i++] = s[start++];
 	res[i] = '\0';
 	return (res);
